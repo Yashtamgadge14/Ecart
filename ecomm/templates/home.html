@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+    <img src="{% static 'img/vivo.jpg' %}" alt="">
+</head>
+<body>
+    <h1>this is home response from html page</h1>
+    <p><i>{{age}}</i></p>
+    <p>{{x}}</p>
+    <p>{{name}}</p>
+    <p>{{gender}}</p>
+    <p>{{r}}</p>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>category</th>
+            <th>price</th>
+        </tr>
+        
+        {% for i in product %}
+
+           
+
+        <tr>
+        
+            <td>{{i.id}}</td>
+            <td>{{i.cat}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.price}}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+    <button onclick="greet()">click me</button>
+    
+
+</body>
+</html>

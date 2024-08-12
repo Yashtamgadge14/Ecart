@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'main' %}
+<div class="row mt-5"><!--row 2 start-->
+    <div class="col-md-9">
+        <h5 class="bg-danger p-2 text-white">Customer Details</h5>
+        <hr>
+        {% for x in products %}
+        {% if forloop.counter == 1 %}
+        <p><strong>Name:</strong>&nbsp;&nbsp;&nbsp;{{x.uid.username}}</p>
+        <p><strong>Email:</strong>&nbsp;&nbsp;&nbsp;{{x.uid.email}}</p>
+        {% endif %}
+        {% endfor %}
+        <div class="mt-3 shadow p-3">
+            <div class="row">
+                {% for x in products %}
+                <div class="col-md-4">
+                   <img src="{{x.pid.pimage.url}}" alt="">
+                </div>
+
+                
+                <div class="col-md-8">
+                 <p><strong>Product Name:</strong>&nbsp;&nbsp;&nbsp;{{x.pid.name}}</p>
+                 <p><strong>Price:</strong>&nbsp;&nbsp;&nbsp;{{x.pid.price}}</p>
+                 <p class="card-text">
+                    {% if x.pid.cat == 1 %}
+                    <p class="card-text">phone</p>
+                    {% elif x.pid.cat == 2 %}
+                    <p class="card-text">shoes</p>
+                    {% else %}
+                    <p class="card-text">clothing</p>
+                    {% endif %}
+                 <p><strong>Product Description:</strong>&nbsp;&nbsp;&nbsp;{{x.pid.pdetails}}</p>
+                 <p><strong>QTY:</strong></p>
+                 <a href="/updateqty/0/{{x.id}}"><button class="btn btn-danger">-</button></a>
+                 <input type="number" value="{{x.qty}}">
+                 <a href="/updateqty/1/{{x.id}}"><button class="btn btn-danger">+</button></a>
+                 <a href="/remove/{{x.id}}"><button class="btn btn-danger">Remove</button></a>
+
+                </div>
+                {% endfor %}
+
+            </div>
+           
+
+        </div>
+        
+
+
+    </div>
+
+    <div class="col-md-3 mt-5">
+        <div class="shadow p-3">
+            <h4>Price Details:</h4>
+            <hr>
+            <p><strong>Price ({{totalqty}} items)</strong> {{total}}</p>
+            <hr>
+            <p><strong>Total Amount:</strong>{{total}}</p>
+            <a href="/makepayment"><button class="btn btn-danger">MAKE PAYMENT</button></a>
+
+        </div>
+
+
+    </div>
+
+</div><!--row 2 end-->
+
+{% endblock 'main' %}
